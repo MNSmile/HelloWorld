@@ -1,0 +1,100 @@
+\documentclass[]{scrartcl}
+\usepackage[UTF8]{ctex}
+\usepackage{graphicx}
+
+%opening
+\title{第一章 操作系统引论}
+\author{20168716\quad彭文\quad物联网\quad班级序列号：24}
+\begin{document}
+\maketitle
+
+\section{操作系统的发展史}
+	\subsection{人工操作方式}
+		\quad
+		\subsubsection{工作方式}
+		程序员将写好程序和数据的纸片放到输入机中，然后启动他们将程序和数据输入计算机，之后启动计算机运行。这种机制只允许一个程序运行完毕才能取走卡片运行下一个卡片中的程序。
+		 
+		\subsubsection{缺点}
+		\begin{itemize}
+			\item 用户独占全机，一台计算机中的资源独自占领，别人不能使用
+			\item  CPU等待人工操作，在程序和数据输入到计算机中时CPU等待
+		\end{itemize}
+	\subsection{脱机输入输出方式}
+		\quad
+		
+		为了解决人机矛盾及CPU和I/O设备之间的矛盾，产生了脱机输入输出方式。
+		
+		\subsubsection{工作方式}
+		\quad
+			\begin{itemize}
+				\item 先将装有程序和数据的卡片转入输入机，然后在外围机的控制下把卡片上的程序和数据输入到磁带上。
+				\item CPU从磁带上高速地调入内存
+				\item CPU完成计算后先从内存高速输出到磁带，然后在另一台外围机的控制下输出到卡片上。
+			\end{itemize}
+		\subsubsection{特征}
+			\begin{itemize}
+				\item 输入时首先脱机将程序和数据输入到能高速输入输出的磁盘上，节省了许多输入输出时间，大大减少了CPU的空闲时间。
+				\item 提高了I/O速度 之前是从卡片中输入到CPU,CPU输出到卡片，现在是CPU从磁盘上读取，输出到磁盘上，提高了I/O速度。
+			\end{itemize}
+	\subsection{单道批处理系统}
+	\quad
+	
+	为了提高对资源的利用率，减少机器的等待时间，对脱机输入输出方式进行了改进，产生了单道批处理系统
+		\subsubsection{工作方式}
+			首先将一批作业输入到磁带上，次作业包括程序、数据和处理步骤，然后在监督程序的控制下，将第一个作业装入进内存，然后作业得到控制权之后运行自己，运行完成之后监督程序把结果输出到磁带，同时从磁盘调用第二个作业进入内存依此执行。
+		\subsubsection{特征}
+		系统资源得不到充分的利用
+		\begin{itemize}
+			\item 内存利用率低
+			\item CPU利用率还可以提高，因为在运行A程序时，如果A程序还需要输入输出数据，就会申请I/O请求，此时CPU就空闲着，得不到有效利用。由此产生了多道批处理系统
+		\end{itemize}
+	\subsection{多道批处理系统}
+	\quad
+		
+		\subsubsection{工作方式}
+		在该系统中，用户提交的作业先存放在外存上，排成一个队列，然后由作业调度程序按照一定的算法，从队列中选择若干个作业调入内存，使它们共享CUP和系统中各种资源。这样，在运行A程序时，如果A程序有I/O需求，CPU就可以调用B程序，如果B程序也有I/O需求，CPU就可以调用下一个程序执行。
+		\subsubsection{特征}
+		系统资源得到了很高的利用，但是平均花费时间长，没有交互能力。
+		\begin{itemize}
+			\item 优点
+				\begin{itemize}
+					\item 资源利用率高，CPU处于忙碌状态时间长
+					\item 系统吞吐量大 系统开销少，CPU利用率高 
+				\end{itemize}
+			\item 缺点
+				\begin{itemize}
+					\item 平均周转时间长
+					\item 无交互能力
+				\end{itemize}
+		\end{itemize}
+	
+	\subsection{分时系统}
+	\quad
+	
+	为了更好的人机交互，共享主机，便于用户上机，同时避免多道批处理系统程序没有I/O请求一直执行的情况，分时系统孕育而生。
+	
+		\subsubsection{工作方式}
+		系统提供多个中断，同时给多个用户使用，当用户在自己的终端上键入命令时，系统能够及时接收，并及时处理该命令，然后将结果返回给用户，此后，用户根据系统返回的响应情况继续键入命令。人机交互的关键就是用户能及时对自己的命令直接实施控制或进行修改。
+		\subsubsection{特征}
+		\begin{itemize}
+			\item 多路性
+			\item 独立性
+			\item 及时性
+			\item 交互性
+		\end{itemize}
+	\subsection{实时系统}
+	\quad
+
+	系统能及时响应事件的请求，在规定的时间内完成对该事件的处理，并控制所有实时任务协调一致的运行。
+	
+	多用于航空航天、军事、核工业等领域
+
+		\subsubsection{特征}
+		\begin{itemize}
+			\item 多路性
+			\item 独立性
+			\item 及时性
+			\item 交互性
+			\item 可靠性
+		\end{itemize}
+\end{document}
